@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>📊 Analyse Descriptive des Données</h1>
+<p style="color:#A8DADC; margin-bottom:30px;">
+    Statistiques et visualisations des données collectées
+</p>
+
+{% if message %}
+<div style="text-align:center; padding:60px; color:#4A7A9B;">
+    <div style="font-size:50px;">📭</div>
+    <p style="margin-top:15px;">{{ message }}</p>
+    <a href="/collecte" style="color:#00C9A7;">Commencer la collecte →</a>
+</div>
+
+{% else %}
+
+<!-- CARTES STATISTIQUES -->
+<div style="display:grid; grid-template-columns:repeat(4,1fr);
+     gap:15px; margin-bottom:40px;">
+
+    <div style="background:#1A2E40; border-left:4px solid #00C9A7;
+         border-radius:10px; padding:20px; text-align:center;">
+        <div style="font-size:32px; color:#00C9A7; font-weight:700;">
+            {{ stats.total }}
+        </div>
+        <div style="color:#A8DADC; font-size:13px; margin-top:5px;">
+            Total Patients
+        </div>
+    </div>
+
+    <div style="background:#1A2E40; border-left:4px solid #FFE66D;
+         border-radius:10px; padding:20px; text-align:center;">
+        <div style="font-size:32px; color:#FFE66D; font-weight:700;">
+            {{ stats.age_moy }}
+        </div>
+        <div style="color:#A8DADC; font-size:13px; margin-top:5px;">
+            Âge moyen (ans)
+        </div>
+    </div>
+
+    <div style="background:#1A2E40; border-left:4px solid #FF6B6B;
+         border-radius:10px; padding:20px; text-align:center;">
+        <div style="font-size:32px; color:#FF6B6B; font-weight:700;">
+            {{ stats.temp_moy }}°C
+        </div>
+        <div style="color:#A8DADC; font-size:13px; margin-top:5px;">
+            Température moyenne
+        </div>
+    </div>
+
+    <div style="background:#1A2E40; border-left:4px solid #4ECDC4;
+         border-radius:10px; padding:20px; text-align:center;">
+        <div style="font-size:32px; color:#4ECDC4; font-weight:700;">
+            {{ stats.maladies }}
+        </div>
+        <div style="color:#A8DADC; font-size:13px; margin-top:5px;">
+            Maladies différentes
+        </div>
+    </div>
+
+</div>
+
+<!-- STATS DÉTAILLÉES -->
+<div style="background:#1A2E40; border-radius:12px; padding:25px;
+     margin-bottom:40px; border:1px solid #2A4A6A;">
+    <h2 style="font-size:16px; margin-bottom:15px;">📋 Résumé Statistique</h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:15px;">
+
+        <div style="background:#0D1B2A; padding:15px; border-radius:8px;">
+            <span style="color:#A8DADC; font-size:13px;">Âge minimum</span>
+            <div style="color:#00C9A7; font-size:22px; font-weight:700; margin-top:5px;">
+                {{ stats.age_min }} ans
+            </div>
+        </div>
+
+        <div style="background:#0D1B2A; padding:15px; border-radius:8px;">
+            <span style="color:#A8DADC; font-size:13px;">Âge maximum</span>
+            <div style="color:#FF6B6B; font-size:22px; font-weight:700; margin-top:5px;">
+                {{ stats.age_max }} ans
+            </div>
+        </div>
+
+        <div style="background:#0D1B2A; padding:15px; border-radius:8px;">
+            <span style="color:#A8DADC; font-size:13px;">Villes couvertes</span>
+            <div style="color:#FFE66D; font-size:22px; font-weight:700; margin-top:5px;">
+                {{ stats.villes }} villes
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- GRAPHIQUES -->
+<h2 style="font-size:16px; margin-bottom:20px;">📈 Visualisations</h2>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:25px;">
+
+    {% for graph in graphiques %}
+    <div style="background:#1A2E40; border-radius:12px; padding:20px;
+         border:1px solid #2A4A6A; text-align:center;">
+        <img src="data:image/png;base64,{{ graph }}"
+             style="width:100%; border-radius:8px;" alt="Graphique">
+    </div>
+    {% endfor %}
+
+</div>
+
+<!-- BOUTON RETOUR -->
+<div style="margin-top:35px;">
+    <a href="/" style="background:#1A2E40; color:#00C9A7; padding:12px 25px;
+       border-radius:8px; text-decoration:none; font-weight:700;
+       border:1px solid #00C9A7;">
+       ← Retour au tableau de bord
+    </a>
+</div>
+
+{% endif %}
+{% endblock %}

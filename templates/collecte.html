@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>📋 Collecte de Données Patient</h1>
+<p style="color:#A8DADC; margin-bottom:30px;">Remplissez tous les champs obligatoires marqués *</p>
+
+<form method="POST" action="/collecte"
+  style="background:#1A2E40; padding:35px; border-radius:16px; border:1px solid #2A4A6A;">
+
+    <!-- SECTION 1 : IDENTITÉ -->
+    <h2 style="font-size:16px; margin-bottom:20px; color:#00C9A7;">
+        👤 Identité du Patient
+    </h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:25px;">
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Nom *</label><br>
+            <input type="text" name="nom" required
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Prénom *</label><br>
+            <input type="text" name="prenom" required
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Âge *</label><br>
+            <input type="number" name="age" min="0" max="120" required
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Sexe *</label><br>
+            <select name="sexe" required
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+                <option value="">-- Choisir --</option>
+                <option value="Masculin">Masculin</option>
+                <option value="Féminin">Féminin</option>
+            </select>
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Ville *</label><br>
+            <input type="text" name="ville" required
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Profession</label><br>
+            <input type="text" name="profession"
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+        </div>
+
+    </div>
+
+    <!-- SECTION 2 : CLINIQUE -->
+    <h2 style="font-size:16px; margin-bottom:20px; color:#00C9A7;">
+        🩺 Informations Cliniques
+    </h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:25px;">
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Maladie diagnostiquée *</label><br>
+            <input type="text" name="maladie" required
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Température (°C)</label><br>
+            <input type="number" name="temperature" step="0.1" min="35" max="42" value="37.0"
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Tension systolique (mmHg)</label><br>
+            <input type="number" name="tension_sys" value="120"
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Tension diastolique (mmHg)</label><br>
+            <input type="number" name="tension_dia" value="80"
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Poids (kg)</label><br>
+            <input type="number" name="poids" step="0.1"
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Taille (cm)</label><br>
+            <input type="number" name="taille"
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+        </div>
+
+    </div>
+
+    <!-- Symptômes -->
+    <div style="margin-bottom:25px;">
+        <label style="color:#A8DADC; font-size:14px;">Symptômes observés</label><br>
+        <textarea name="symptomes" rows="3"
+        style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+        border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;
+        resize:vertical;"></textarea>
+    </div>
+
+    <!-- SECTION 3 : ANTÉCÉDENTS -->
+    <h2 style="font-size:16px; margin-bottom:20px; color:#00C9A7;">
+        📁 Antécédents & Statut
+    </h2>
+
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:25px;">
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Fumeur</label><br>
+            <select name="fumeur"
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+                <option value="Non">Non</option>
+                <option value="Oui">Oui</option>
+            </select>
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Diabète</label><br>
+            <select name="diabete"
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+                <option value="Non">Non</option>
+                <option value="Oui">Oui</option>
+            </select>
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Hypertension</label><br>
+            <select name="hypertension"
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+                <option value="Non">Non</option>
+                <option value="Oui">Oui</option>
+            </select>
+        </div>
+
+        <div>
+            <label style="color:#A8DADC; font-size:14px;">Statut *</label><br>
+            <select name="statut" required
+            style="width:100%; padding:10px; margin-top:6px; background:#0D1B2A;
+            border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+                <option value="En suivi">En suivi</option>
+                <option value="Guéri">Guéri</option>
+                <option value="Chronique">Chronique</option>
+            </select>
+        </div>
+
+    </div>
+
+    <!-- Date -->
+    <div style="margin-bottom:30px;">
+        <label style="color:#A8DADC; font-size:14px;">Date de collecte *</label><br>
+        <input type="date" name="date_collecte" required
+        style="width:300px; padding:10px; margin-top:6px; background:#0D1B2A;
+        border:1px solid #2A4A6A; border-radius:8px; color:white; font-size:15px;">
+    </div>
+
+    <!-- BOUTONS -->
+    <div style="display:flex; gap:15px;">
+        <button type="submit"
+        style="background:#00C9A7; color:#0D1B2A; padding:13px 35px;
+        border:none; border-radius:8px; font-size:16px; font-weight:700; cursor:pointer;">
+        💾 Enregistrer le patient
+        </button>
+
+        <a href="/"
+        style="background:#1A2E40; color:#A8DADC; padding:13px 25px;
+        border:1px solid #2A4A6A; border-radius:8px; font-size:16px;
+        text-decoration:none; font-weight:600;">
+        ← Annuler
+        </a>
+    </div>
+
+</form>
+
+{% endblock %}
